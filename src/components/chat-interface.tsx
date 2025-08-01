@@ -74,7 +74,7 @@ export default function ChatInterface() {
         content: result.response,
       };
       setMessages((prev) => [...prev, assistantMessage]);
-      if (messages.length === 1) {
+       if (messages.length === 1) {
         setSuggestions(result.suggestions);
       } else {
         setSuggestions([]);
@@ -111,7 +111,7 @@ export default function ChatInterface() {
   };
 
   return (
-    <Card className="w-full max-w-3xl h-[90vh] flex flex-col shadow-2xl rounded-2xl bg-card/80 dark:bg-card/60 backdrop-blur-lg">
+    <Card className="w-full max-w-3xl h-[90vh] md:h-[80vh] flex flex-col shadow-2xl rounded-2xl bg-card/80 dark:bg-card/60 backdrop-blur-lg">
       <CardHeader className="border-b">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
@@ -121,7 +121,7 @@ export default function ChatInterface() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle className="font-headline text-2xl tracking-wide">
+              <CardTitle className="font-headline text-xl md:text-2xl tracking-wide">
                 Kindred AI
               </CardTitle>
               <CardDescription>Your compassionate AI therapist</CardDescription>

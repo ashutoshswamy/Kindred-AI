@@ -27,10 +27,10 @@ export default function Home() {
       <main className="flex-1 flex flex-col items-center justify-center text-center p-4">
         <section className="max-w-2xl mx-auto">
           <div className="space-y-6">
-            <h1 className="text-5xl font-bold tracking-tighter">
+            <h1 className="text-4xl md:text-5xl font-bold tracking-tighter">
               A safe space to talk, powered by AI.
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-md md:text-lg text-muted-foreground">
               Kindred AI is your compassionate companion for mental wellness.
               Talk through your feelings, get guidance, and explore mindfulness
               exercises in a secure, non-judgmental environment.

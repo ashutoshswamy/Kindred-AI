@@ -14,7 +14,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-import { Bot, Loader2, SendHorizontal, User } from 'lucide-react';
+import { Bot, Loader2, SendHorizontal, Sparkles, User } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 interface Message {
@@ -22,6 +22,13 @@ interface Message {
   role: 'user' | 'assistant';
   content: string;
 }
+
+const suggestions = [
+  "I'm feeling anxious about work.",
+  'How can I practice mindfulness?',
+  'I had a disagreement with my partner.',
+  "I'm struggling with motivation.",
+];
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
@@ -43,14 +50,13 @@ export default function ChatInterface() {
     scrollToBottom();
   }, [messages, isLoading]);
 
-  const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (message: string) => {
+    if (isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: input,
+      content: message,
     };
 
     setMessages((prev) => [...prev, userMessage]);
@@ -58,7 +64,7 @@ export default function ChatInterface() {
     setIsLoading(true);
 
     try {
-      const result = await aiTherapistChat({ message: input });
+      const result = await aiTherapistChat({ message });
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
@@ -70,7 +76,8 @@ export default function ChatInterface() {
       const errorMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: 'I am having trouble connecting right now. Please try again later.',
+        content:
+          'I am having trouble connecting right now. Please try again later.',
       };
       setMessages((prev) => [...prev, errorMessage]);
     } finally {
@@ -78,10 +85,19 @@ export default function ChatInterface() {
     }
   };
 
+  const handleSendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input.trim() || isLoading) return;
+    sendMessage(input);
+  };
+  
+  const handleSuggestionClick = (suggestion: string) => {
+    sendMessage(suggestion);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
-      // To trigger form submission
       event.currentTarget.form?.requestSubmit();
     }
   };
@@ -96,7 +112,9 @@ export default function ChatInterface() {
             </AvatarFallback>
           </Avatar>
           <div>
-            <CardTitle className="font-headline text-2xl tracking-wide">Kindred AI</CardTitle>
+            <CardTitle className="font-headline text-2xl tracking-wide">
+              Kindred AI
+            </CardTitle>
             <CardDescription>Your compassionate AI therapist</CardDescription>
           </div>
         </div>
@@ -114,9 +132,9 @@ export default function ChatInterface() {
               >
                 {message.role === 'assistant' && (
                   <Avatar className="h-8 w-8">
-                     <AvatarFallback className="bg-muted">
-                        <Bot className="h-5 w-5" />
-                     </AvatarFallback>
+                    <AvatarFallback className="bg-muted">
+                      <Bot className="h-5 w-5" />
+                    </AvatarFallback>
                   </Avatar>
                 )}
                 <div
@@ -132,8 +150,8 @@ export default function ChatInterface() {
                 {message.role === 'user' && (
                   <Avatar className="h-8 w-8">
                     <AvatarFallback className="bg-primary text-primary-foreground">
-                        <User className="h-5 w-5" />
-                     </AvatarFallback>
+                      <User className="h-5 w-5" />
+                    </AvatarFallback>
                   </Avatar>
                 )}
               </div>
@@ -157,8 +175,32 @@ export default function ChatInterface() {
           </div>
         </ScrollArea>
       </CardContent>
+      {messages.length <= 1 && (
+        <div className="px-4 pb-2 border-t pt-4">
+          <div className="flex items-center gap-2 mb-2">
+             <Sparkles className="h-4 w-4 text-muted-foreground" />
+             <h3 className="text-sm font-medium text-muted-foreground">Or try one of these starters</h3>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {suggestions.map((suggestion) => (
+              <Button
+                key={suggestion}
+                variant="outline"
+                className="text-left justify-start h-auto whitespace-normal"
+                onClick={() => handleSuggestionClick(suggestion)}
+                disabled={isLoading}
+              >
+                {suggestion}
+              </Button>
+            ))}
+          </div>
+        </div>
+      )}
       <CardFooter className="border-t p-4">
-        <form onSubmit={handleSendMessage} className="flex w-full items-center gap-2">
+        <form
+          onSubmit={handleSendMessage}
+          className="flex w-full items-center gap-2"
+        >
           <Textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}

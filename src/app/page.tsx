@@ -50,7 +50,7 @@ export default function Home() {
             <div className="md:col-span-2">
               <Logo />
               <p className="text-muted-foreground mt-2 text-sm max-w-sm">
-                A comprehensive suite of tools to help you with your mental wellness.
+                Your compassionate AI companion for mental wellness.
               </p>
             </div>
             <div>

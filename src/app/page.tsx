@@ -66,13 +66,13 @@ export default function Home() {
             <div>
               <h3 className="font-semibold">Connect with Us</h3>
               <div className="flex mt-2 space-x-4">
-                <Link href="#" className="text-muted-foreground hover:text-foreground">
+                <Link href="https://github.com/ashutoshswamy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                   <Github className="h-5 w-5" />
                 </Link>
-                <Link href="#" className="text-muted-foreground hover:text-foreground">
+                <Link href="https://linkedin.com/in/ashutoshswamy" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                   <Linkedin className="h-5 w-5" />
                 </Link>
-                <Link href="#" className="text-muted-foreground hover:text-foreground">
+                <Link href="https://twitter.com/ashutoshswamy_" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">
                   <Twitter className="h-5 w-5" />
                 </Link>
               </div>

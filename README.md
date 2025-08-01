@@ -12,7 +12,7 @@ Kindred AI is a web application designed to provide a safe, non-judgmental space
 
 ## 📜 Disclaimer
 
-This application is for informational and supportive purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. If you are in crisis, please contact a local emergency service or crisis hotline. You can read the full disclaimer [here](/disclaimer).
+This application is for informational and supportive purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment. If you are in crisis, please contact a local emergency service or crisis hotline. You can read the full disclaimer [here](https://kindred-ai.vercel.app/disclaimer).
 
 ## 🧑‍💻 Developer
 

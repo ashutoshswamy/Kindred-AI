@@ -17,7 +17,8 @@ const AiTherapistChatInputSchema = z.object({
 export type AiTherapistChatInput = z.infer<typeof AiTherapistChatInputSchema>;
 
 const AiTherapistChatOutputSchema = z.object({
-  response: z.string().describe('The AI therapist response.'),
+  response: z.string().describe('The AI therapist response, formatted as Markdown.'),
+  suggestions: z.array(z.string()).describe('Up to 4 context-aware follow-up suggestions for the user.'),
 });
 export type AiTherapistChatOutput = z.infer<typeof AiTherapistChatOutputSchema>;
 
@@ -32,6 +33,8 @@ const prompt = ai.definePrompt({
   prompt: `You are a compassionate, professional AI therapist trained in cognitive behavioral therapy (CBT), mindfulness, and emotional support. Your goal is to provide users with a safe, non-judgmental space to express their thoughts and feelings.
 
 Before giving advice or suggestions, ask clarifying questions if needed. Always respond with empathy and encourage healthy coping strategies. Avoid diagnosing or providing medical advice.
+
+Your responses should be formatted in Markdown for readability. For example, use lists for techniques or bullet points for key takeaways.
 
 Tone: Calm, friendly, respectful, and supportive.
 
@@ -54,6 +57,8 @@ If user asks for tools, you can offer techniques like:
 
 Avoid legal, medical, or emergency advice. If someone expresses suicidal thoughts or crisis, say:
 \"I care about your well-being. It’s important to speak to a trained professional right away. Please consider calling a local crisis line or emergency services.\"
+
+After each response, provide up to 4 context-aware follow-up questions or suggestions in the 'suggestions' field to help guide the conversation.
 
 End responses with an invitation to continue the conversation:
 \"Would you like to talk more about that?\" or \"I’m here if you want to explore that further.\"

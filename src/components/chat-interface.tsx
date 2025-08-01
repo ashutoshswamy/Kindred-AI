@@ -1,7 +1,7 @@
 'use client';
 
 import { aiTherapistChat } from '@/ai/flows/ai-therapist-chat';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import {
   Card,
@@ -16,19 +16,14 @@ import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
 import { Bot, Loader2, SendHorizontal, Sparkles, User } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface Message {
   id: string;
   role: 'user' | 'assistant';
   content: string;
 }
-
-const suggestions = [
-  "I'm feeling anxious about work.",
-  'How can I practice mindfulness?',
-  'I had a disagreement with my partner.',
-  "I'm struggling with motivation.",
-];
 
 export default function ChatInterface() {
   const [messages, setMessages] = useState<Message[]>([
@@ -40,6 +35,12 @@ export default function ChatInterface() {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [suggestions, setSuggestions] = useState([
+    "I'm feeling anxious about work.",
+    'How can I practice mindfulness?',
+    'I had a disagreement with my partner.',
+    "I'm struggling with motivation.",
+  ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -62,6 +63,7 @@ export default function ChatInterface() {
     setMessages((prev) => [...prev, userMessage]);
     setInput('');
     setIsLoading(true);
+    setSuggestions([]);
 
     try {
       const result = await aiTherapistChat({ message });
@@ -71,6 +73,7 @@ export default function ChatInterface() {
         content: result.response,
       };
       setMessages((prev) => [...prev, assistantMessage]);
+      setSuggestions(result.suggestions);
     } catch (error) {
       console.error('Error getting response from AI:', error);
       const errorMessage: Message = {
@@ -90,7 +93,7 @@ export default function ChatInterface() {
     if (!input.trim() || isLoading) return;
     sendMessage(input);
   };
-  
+
   const handleSuggestionClick = (suggestion: string) => {
     sendMessage(suggestion);
   };
@@ -139,13 +142,21 @@ export default function ChatInterface() {
                 )}
                 <div
                   className={cn(
-                    'max-w-[75%] rounded-2xl p-3 text-sm whitespace-pre-wrap',
+                    'max-w-[75%] rounded-2xl p-3 text-sm',
                     message.role === 'user'
                       ? 'bg-primary text-primary-foreground rounded-br-none'
                       : 'bg-muted rounded-bl-none'
                   )}
                 >
-                  {message.content}
+                  <ReactMarkdown
+                    className="prose prose-sm max-w-none"
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                    }}
+                  >
+                    {message.content}
+                  </ReactMarkdown>
                 </div>
                 {message.role === 'user' && (
                   <Avatar className="h-8 w-8">
@@ -175,11 +186,13 @@ export default function ChatInterface() {
           </div>
         </ScrollArea>
       </CardContent>
-      {messages.length <= 1 && (
+      {suggestions.length > 0 && !isLoading && (
         <div className="px-4 pb-2 border-t pt-4">
           <div className="flex items-center gap-2 mb-2">
              <Sparkles className="h-4 w-4 text-muted-foreground" />
-             <h3 className="text-sm font-medium text-muted-foreground">Or try one of these starters</h3>
+             <h3 className="text-sm font-medium text-muted-foreground">
+              {messages.length <= 1 ? 'Or try one of these starters' : 'Continue the conversation'}
+             </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             {suggestions.map((suggestion) => (

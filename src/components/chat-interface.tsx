@@ -74,7 +74,8 @@ export default function ChatInterface() {
         content: result.response,
       };
       setMessages((prev) => [...prev, assistantMessage]);
-      setSuggestions(result.suggestions);
+      // We don't want to show suggestions after the first message.
+      // setSuggestions(result.suggestions);
     } catch (error) {
       console.error('Error getting response from AI:', error);
       const errorMessage: Message = {
@@ -190,12 +191,12 @@ export default function ChatInterface() {
           </div>
         </ScrollArea>
       </CardContent>
-      {suggestions.length > 0 && !isLoading && (
+      {suggestions.length > 0 && !isLoading && messages.length <= 1 && (
         <div className="px-4 pb-2 border-t pt-4">
           <div className="flex items-center gap-2 mb-2">
              <Sparkles className="h-4 w-4 text-muted-foreground" />
              <h3 className="text-sm font-medium text-muted-foreground">
-              {messages.length <= 1 ? 'Or try one of these starters' : 'Continue the conversation'}
+              Or try one of these starters
              </h3>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">

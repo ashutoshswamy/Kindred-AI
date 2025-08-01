@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, BrainCircuit } from 'lucide-react';
+import { ArrowRight, BrainCircuit, Github, Linkedin, Twitter } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
+import { Copyright } from '@/components/copyright';
 
 const Logo = () => (
   <div className="flex items-center gap-2 font-headline text-2xl font-bold">
@@ -44,8 +45,48 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="p-4 text-center text-muted-foreground text-sm">
-        © {new Date().getFullYear()} Kindred AI. All rights reserved.
+      <footer className="bg-background border-t">
+        <div className="container mx-auto py-8 px-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <Logo />
+              <p className="text-muted-foreground mt-2 text-sm max-w-sm">
+                A comprehensive suite of tools to help you with your mental wellness.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold">Legal</h3>
+              <ul className="mt-2 space-y-2 text-sm">
+                <li>
+                  <Link href="#" className="text-muted-foreground hover:text-foreground">
+                    Disclaimer
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="font-semibold">Connect with Us</h3>
+              <div className="flex mt-2 space-x-4">
+                <Link href="#" className="text-muted-foreground hover:text-foreground">
+                  <Github className="h-5 w-5" />
+                </Link>
+                <Link href="#" className="text-muted-foreground hover:text-foreground">
+                  <Linkedin className="h-5 w-5" />
+                </Link>
+                <Link href="#" className="text-muted-foreground hover:text-foreground">
+                  <Twitter className="h-5 w-5" />
+                </Link>
+              </div>
+               <div className="mt-4">
+                <h3 className="font-semibold mb-2">Theme</h3>
+                <ThemeToggle />
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 border-t pt-4 text-center text-muted-foreground text-sm">
+            <Copyright />
+          </div>
+        </div>
       </footer>
     </div>
   );

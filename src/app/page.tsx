@@ -14,8 +14,7 @@ const Logo = () => (
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background text-foreground">
-      <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#374151_1px,transparent_1px)] [background-size:16px_16px]"></div>
+    <div className="flex flex-col min-h-screen bg-background/80 text-foreground">
       <header className="p-4 flex justify-between items-center">
         <Logo />
         <div className="flex items-center gap-2">
@@ -45,7 +44,7 @@ export default function Home() {
           </div>
         </section>
       </main>
-      <footer className="bg-background border-t">
+      <footer className="bg-background/80 border-t">
         <div className="container mx-auto py-8 px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div className="md:col-span-2">

@@ -13,8 +13,8 @@ export default function Home() {
         </Button>
       </header>
       <main className="flex-1 flex flex-col items-center justify-center text-center p-4">
-        <section className="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          <div className="space-y-6 text-left">
+        <section className="max-w-2xl mx-auto">
+          <div className="space-y-6">
             <h1 className="text-5xl font-bold tracking-tighter">
               A safe space to talk, powered by AI.
             </h1>
@@ -29,16 +29,6 @@ export default function Home() {
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
-          </div>
-          <div>
-            <Image
-              src="https://placehold.co/600x400.png"
-              alt="AI therapist illustration"
-              width={600}
-              height={400}
-              className="rounded-xl shadow-2xl"
-              data-ai-hint="wellness zen"
-            />
           </div>
         </section>
       </main>

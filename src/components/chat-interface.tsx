@@ -74,8 +74,11 @@ export default function ChatInterface() {
         content: result.response,
       };
       setMessages((prev) => [...prev, assistantMessage]);
-      // We don't want to show suggestions after the first message.
-      // setSuggestions(result.suggestions);
+      if (messages.length === 1) {
+        setSuggestions(result.suggestions);
+      } else {
+        setSuggestions([]);
+      }
     } catch (error) {
       console.error('Error getting response from AI:', error);
       const errorMessage: Message = {

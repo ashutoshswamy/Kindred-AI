@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { BrainCircuit } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Copyright } from '@/components/copyright';
 
 const Logo = () => (
   <div className="flex items-center gap-2 font-headline text-2xl font-bold">
-    <BrainCircuit className="h-8 w-8 text-primary" />
+    <Heart className="h-8 w-8 text-primary" />
     <span>Kindred AI</span>
   </div>
 );
@@ -45,7 +45,7 @@ export default function DisclaimerPage() {
                 provided by Kindred AI is intended for general informational
                 purposes and should not be considered a substitute for
                 professional medical advice from a qualified healthcare
--                provider. Always seek the advice of your physician or other
+                provider. Always seek the advice of your physician or other
                 qualified health provider with any questions you may have
                 regarding a medical condition.
               </p>

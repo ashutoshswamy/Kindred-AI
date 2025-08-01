@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, BrainCircuit, Github, Linkedin, Twitter } from 'lucide-react';
+import { ArrowRight, Heart, Github, Linkedin, Twitter } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Copyright } from '@/components/copyright';
 
 const Logo = () => (
   <div className="flex items-center gap-2 font-headline text-2xl font-bold">
-    <BrainCircuit className="h-8 w-8 text-primary" />
+    <Heart className="h-8 w-8 text-primary" />
     <span className="text-foreground">Kindred AI</span>
   </div>
 );

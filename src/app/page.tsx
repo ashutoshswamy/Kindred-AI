@@ -1,23 +1,28 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, BrainCircuit } from 'lucide-react';
+import { ThemeToggle } from '@/components/theme-toggle';
 
 const Logo = () => (
-  <BrainCircuit className="h-8 w-8 text-primary" />
+  <div className="flex items-center gap-2 font-headline text-2xl font-bold">
+    <BrainCircuit className="h-8 w-8 text-primary" />
+    <span>Kindred AI</span>
+  </div>
 );
 
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen bg-background">
+    <div className="flex flex-col min-h-screen bg-background text-foreground">
+      <div className="absolute inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#374151_1px,transparent_1px)] [background-size:16px_16px]"></div>
       <header className="p-4 flex justify-between items-center">
-        <div className="flex items-center gap-2 font-headline text-2xl font-bold">
-          <Logo />
-          <span>Kindred AI</span>
+        <Logo />
+        <div className="flex items-center gap-2">
+          <Button asChild variant="ghost">
+            <Link href="/chat">Get Started</Link>
+          </Button>
+          <ThemeToggle />
         </div>
-        <Button asChild variant="ghost">
-          <Link href="/chat">Get Started</Link>
-        </Button>
       </header>
       <main className="flex-1 flex flex-col items-center justify-center text-center p-4">
         <section className="max-w-2xl mx-auto">

@@ -18,6 +18,7 @@ import { Bot, BrainCircuit, Loader2, SendHorizontal, Sparkles, User } from 'luci
 import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { ThemeToggle } from './theme-toggle';
 
 interface Message {
   id: string;
@@ -106,20 +107,23 @@ export default function ChatInterface() {
   };
 
   return (
-    <Card className="w-full max-w-3xl h-[90vh] flex flex-col shadow-2xl rounded-2xl">
+    <Card className="w-full max-w-3xl h-[90vh] flex flex-col shadow-2xl rounded-2xl bg-card/80 dark:bg-card/60 backdrop-blur-lg">
       <CardHeader className="border-b">
-        <div className="flex items-center gap-3">
-          <Avatar className="h-10 w-10 border-2 border-primary">
-            <AvatarFallback className="bg-primary/20">
-              <BrainCircuit className="h-6 w-6 text-primary-foreground" />
-            </AvatarFallback>
-          </Avatar>
-          <div>
-            <CardTitle className="font-headline text-2xl tracking-wide">
-              Kindred AI
-            </CardTitle>
-            <CardDescription>Your compassionate AI therapist</CardDescription>
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <Avatar className="h-10 w-10 border-2 border-primary">
+              <AvatarFallback className="bg-primary/20">
+                <BrainCircuit className="h-6 w-6 text-primary-foreground" />
+              </AvatarFallback>
+            </Avatar>
+            <div>
+              <CardTitle className="font-headline text-2xl tracking-wide">
+                Kindred AI
+              </CardTitle>
+              <CardDescription>Your compassionate AI therapist</CardDescription>
+            </div>
           </div>
+          <ThemeToggle />
         </div>
       </CardHeader>
       <CardContent className="flex-1 overflow-hidden p-0">
@@ -149,7 +153,7 @@ export default function ChatInterface() {
                   )}
                 >
                   <ReactMarkdown
-                    className="prose prose-sm max-w-none"
+                    className="prose prose-sm dark:prose-invert max-w-none"
                     remarkPlugins={[remarkGfm]}
                     components={{
                       p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,

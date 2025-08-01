@@ -7,7 +7,7 @@ import { Copyright } from '@/components/copyright';
 const Logo = () => (
   <div className="flex items-center gap-2 font-headline text-2xl font-bold">
     <BrainCircuit className="h-8 w-8 text-primary" />
-    <span>Kindred AI</span>
+    <span className="text-foreground">Kindred AI</span>
   </div>
 );
 
@@ -57,7 +57,7 @@ export default function Home() {
               <h3 className="font-semibold">Legal</h3>
               <ul className="mt-2 space-y-2 text-sm">
                 <li>
-                  <Link href="#" className="text-muted-foreground hover:text-foreground">
+                  <Link href="/disclaimer" className="text-muted-foreground hover:text-foreground">
                     Disclaimer
                   </Link>
                 </li>

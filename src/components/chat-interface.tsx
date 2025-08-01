@@ -14,7 +14,7 @@ import {
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Textarea } from '@/components/ui/textarea';
 import { cn } from '@/lib/utils';
-import { Bot, Heart, Loader2, SendHorizontal, Sparkles, User } from 'lucide-react';
+import { Bot, HeartHandshake, Loader2, SendHorizontal, Sparkles, User } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -117,7 +117,7 @@ export default function ChatInterface() {
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border-2 border-primary">
               <AvatarFallback className="bg-primary/20 text-primary">
-                <Heart className="h-6 w-6" />
+                <HeartHandshake className="h-6 w-6" />
               </AvatarFallback>
             </Avatar>
             <div>

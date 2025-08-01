@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { Heart } from 'lucide-react';
+import { HeartHandshake } from 'lucide-react';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { Copyright } from '@/components/copyright';
 
 const Logo = () => (
   <div className="flex items-center gap-2 font-headline text-2xl font-bold">
-    <Heart className="h-8 w-8 text-primary" />
+    <HeartHandshake className="h-8 w-8 text-primary" />
     <span>Kindred AI</span>
   </div>
 );

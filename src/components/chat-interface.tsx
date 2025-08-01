@@ -112,8 +112,8 @@ export default function ChatInterface() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Avatar className="h-10 w-10 border-2 border-primary">
-              <AvatarFallback className="bg-primary/20">
-                <BrainCircuit className="h-6 w-6 text-primary-foreground" />
+              <AvatarFallback className="bg-primary/20 text-primary">
+                <BrainCircuit className="h-6 w-6" />
               </AvatarFallback>
             </Avatar>
             <div>
